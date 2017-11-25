@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body>
+  <div class="container" style="margin-top:70px;">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="alert alert-info">
+        <h1><p class="text-center">SATIS PORTALI</p></h1>
+        </div>
+    </div>
+      <div class="col-md-4">
+          <div class="alert alert-success">
+        <h1>Kayıt Ekle</h1>
+        <label>ÜRÜN ADI</label>
+        <input type="text" id="txtürünadi" class="form-control">
+        <label>ÜRÜN BARKOD NUMARASI</label>
+        <input type="text" id="txtürünbarkod" class="form-control">
+        <label>ÜRÜN SATILIŞ TARİHİ</label>
+        <input type="text" id="txtürünsatılıs" class="form-control">
+        <br>
+        <label>STOK DURUMU</label>
+        <input type="text" id="txtstokdurumu" class="form-control">
+        <br>
+        <button id="btnKaydet" class="btn btn-primary">Kaydet</button>
+        <hr>
+        <div id="sonuc"></div>
+
+      </div>
+    </div>
+      <div class="col-md-8">
+        <h1>Kayıtlar</h1>
+        <table class="table table-hover" id="tbKayitlar">
+          <tr class="bg-info">
+
+            <td>ÜRÜN ADI</td>
+            <td>ÜRÜN BARKOD NUMARASI</td>
+            <td>ÜRÜN SATILIŞ TARİHİ</td>
+            <td>STOK DURUMU</td>
+            <td>Sil</td>
+          </tr>
+          <tr>
+
+            <td>METRİK VİDA</td>
+            <td>20161132012</td>
+            <td>20.11.2017</td>
+            <td>55</td>
+            <td>
+              <button class="btn btn-danger sil">Sil</button>
+            </td>
+          </tr>
+          <tr>
+                <td>TORNAVİDA</td>
+                <td>20161121001</td>
+                <td>20.11.2017</td>
+                <td>98</td>
+            <td>
+              <button class="btn btn-danger sil">Sil</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      $("#btnKaydet").click(function () {
+        var ÜRÜNADI = $("#txtürünadi").val();
+        var ÜRÜNBARKOD = $("#txtürünbarkod").val();
+        var URUNSATILIS = $("#txtürünsatılıs").val();
+        var STOKDURUMU = $("#txtstokdurumu").val();
+        if (ÜRÜNADI == "" || ÜRÜNBARKOD == "" || URUNSATILIS == "" || STOKDURUMU == "") {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Lütfen Tüm Alanları Doldurunuz!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(3000);
+          return false;
+        }
+        $("#tbKayitlar").append("<tr><td>" + ÜRÜNADI + "</td><td>" + ÜRÜNBARKOD + "</td><td>" + URUNSATILIS + "</td><td>" + STOKDURUMU + "</td><td><button class='btn btn-danger sil'>Sil</button></td></tr>");
+      });
+      $(document).on("click", ".sil", function () {
+        var satir = $(this).closest("tr");
+        satir.remove();
+      });
+    });
+  </script>
+</body>
+
+</html>
